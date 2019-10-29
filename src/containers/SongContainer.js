@@ -13,17 +13,17 @@ class SongContainer extends React.Component {
         this.handleSongSelected = this.handleSongSelected.bind(this);
     }
 
-    componentDidMount (){
+    componentDidMount() {
         const url = 'https://itunes.apple.com/gb/rss/topsongs/limit=20/json';
 
         fetch(url)
         .then(res => res.json())
-        .then(songs => this.setState({songs: songs}))
+        .then(songs => this.setState({ songs: songs}))
         .catch(err => console.error);
     }
 
     handleSongSelected(index){
-        const selectedSong = this.state.songs.index;
+        const selectedSong = this.state.songs[index];
         this.setState({ currentSong: selectedSong })
     }
 
@@ -32,7 +32,7 @@ class SongContainer extends React.Component {
             <div>
             <h2>Song Container</h2>
             <SongSelector songs={this.state.songs} onSongSelected={this.handleSongSelected}/>
-            <SongDetail song={this.state.currentSong} />
+            <SongDetail song={this.state.currentSong}/>
             </div>
         );
     }
